@@ -75,7 +75,7 @@ function createAlbum(albumSrc){
   albumTitle.innerText = albumInfo.name;
   album.appendChild(albumTitle);
   album.addEventListener("click", () => {
-    miscHelper.useCustomScroll && clickedTitles = true;
+    miscHelper.useCustomScroll && (clickedTitles = true);
     document.querySelector("#titlesImage").src = albumInfo.img;
     document.querySelector("#title").innerText = albumInfo.name;
     document.querySelector("#titles").innerHTML = "";
