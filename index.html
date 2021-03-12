@@ -1,15 +1,69 @@
 <!DOCTYPE html>
-<!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8">
     <title></title>
     <link rel="stylesheet" href="index.css">
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self'">
   </head>
   <body>
+    <audio></audio>
         <div id="app_title">
           <div id="app_close">
-            Exit
+            Beenden
+          </div>
+            <img src="albumDefaultImg.png" id="titlesImage" style="display: none;">
+          <div id="titleAlbum" style="display: none">
+            <div id="title">
+            Titel</div>
+            <div id="titlePlayPause">
+                <div id="play">
+                  <svg viewBox="0 0 50 50">
+                  <polygon points="0,0 50,25 0,50" fill="currentColor"/>
+                  </svg>
+                </div>
+                <div id="pause" style="display: none;">
+                  <svg viewBox="0 0 50 50">
+                  	<polygon points="0,0 15,0 15,50 0,50" fill="currentColor" />
+                    	<polygon points="35,0 50,0 50,50 35,50" fill="currentColor" />
+                  </svg>
+              </div>
+
+                <div id="repeat" style="display: none;">
+
+                  <svg viewBox="0 0 100 100" class="repeat-svg">
+                      <ellipse cx="50" cy="50" rx="35" ry="35" fill="transparent" stroke="currentColor"
+                          stroke-width="10">
+                      </ellipse>
+                      <path d="M 0 0 100 100" stroke="#202225" stroke-width="50"></path>
+                      <polygon points="50,0 35,20 57,32" fill="currentColor"></polygon>
+                      <polygon points="50,100 65,80 43,68" fill="currentColor"></polygon>
+                  </svg>
+
+                </div>
+                <div id="no-repeat">
+
+                  <svg viewBox="0 0 100 100" class="repeat-svg">
+                      <ellipse cx="50" cy="50" rx="35" ry="35" fill="transparent" stroke="currentColor"
+                          stroke-width="10">
+                      </ellipse>
+                      <path d="M 0 0 100 100" stroke="#202225" stroke-width="50"></path>
+                      <polygon points="50,0 35,20 57,32" fill="currentColor"></polygon>
+                      <polygon points="50,100 65,80 43,68" fill="currentColor"></polygon>
+                      <polygon points="0,45 0,60 100,60 100,45" fill="#f00" />
+                  </svg>
+
+                </div>
+            </div>
+          </div>
+          <div id="app_back" style="display: none;">
+            Zurück
+          </div>
+        </div>
+        <div id="content">
+          <div id="albums">
+          </div>
+          <div id="titles" style="display: none;">
           </div>
         </div>
         <script src="window.js"></script>

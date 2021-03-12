@@ -1,12 +1,17 @@
+body{
+  --app-bar-height: 100px;
+  --app-bar-font: 2.5em;
+}
 #app_title {
-    height: 32px;
+  font-size: var(--app-bar-font);
+    height: var(--app-bar-height);
     z-index: 3001;
     flex-shrink: 0;
     -webkit-box-orient: horizontal;
     -webkit-box-direction: reverse;
     flex-direction: row-reverse;
+    justify-content: space-between;
     -webkit-box-pack: start;
-    justify-content: flex-start;
     -webkit-box-align: stretch;
     align-items: stretch;
     display: flex;
@@ -17,7 +22,6 @@
     font-weight: inherit;
     font-style: inherit;
     font-family: inherit;
-    font-size: 100%;
     vertical-align: baseline;
     background-color: rgb(32, 34, 37);
     position: absolute;
@@ -25,14 +29,24 @@
     left: 0;
 }
 
-#app_close {
+#app_close, #app_back {
     user-select: none;
     line-height: 1;
-    color: rgb(255, 255, 255);
-    cursor: pointer;
     outline: 0;
-    padding: 10px;
-    background-color: rgb(240, 71, 71);
+    display: flex;
+    padding-left: 10px;
+    padding-right: 10px;
+    align-items: center;
+}
+
+#app_close {
+  background-color: rgb(240, 71, 71);
+  color: rgb(255, 255, 255);
+}
+
+#app_back {
+  background-color: rgb(54, 57, 63);
+  color: rgb(255, 255, 255);
 }
 
 html {
@@ -42,12 +56,7 @@ html {
 }
 
 body {
-    margin: 0px;
-    min-height: 100%;
-    width: 100%;
-}
-
-body {
+  pointer: none;
     position: absolute;
     overflow: hidden;
     display: flex;
@@ -62,97 +71,101 @@ body {
     border: 0;
     font-weight: 300;
     font-style: inherit;
-    font-family: "Roboto";
+    font-family: "Roboto", sans-serif;
     font-size: 100%;
     vertical-align: baseline;
     line-height: 1;
     user-select: none;
     background-color: rgb(54, 57, 63);
     color: rgb(255, 255, 255);
+    /*cursor: none;*/
 }
-
-.navbar {
-    overflow: hidden;
-    background-color: #333;
-}
-
-.navbar a {
-    float: left;
-    font-size: 16px;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-}
-
-.dropdown {
-    float: left;
-    overflow: hidden;
-}
-
-.dropdown .dropbtn {
-    font-size: 16px;
-    border: none;
-    outline: none;
-    color: white;
-    padding: 0 10px;
-    background-color: inherit;
-    font-family: inherit;
-    height: 32px;
-    margin: 0;
-}
-
-.winactive .dropbtn {
-    color: rgb(155, 155, 155);
-}
-
-.dropdown:hover .dropbtn {
-    background-color: rgba(79, 84, 92, 0.16);
-}
-
-.dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #f9f9f9;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-    z-index: 1;
-}
-
-.dropdown-content a {
-    float: none;
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-    text-align: left;
-}
-
-.dropdown-content a:hover {
-    background-color: #ddd;
-}
-
-.dropdown:hover .dropdown-content {
-    display: block;
-}
-
-.mos .hide-mos {
-    display: none !important;
-}
-
-#title {
-    overflow: hidden;
-    justify-self: center;
-    align-self: center;
-    text-align: center;
-    margin-left: auto;
-    margin-right: auto;
-}
-
 * {
     outline: 0;
 }
 
-.winactive #app_title {
-    color: rgb(155, 155, 155);
+#content {
+  top: var(--app-bar-height);
+  bottom: 0;
+  left:0;
+  right:0;
+  position: absolute;
+}
+
+#albums, #titles {
+  top: 10px;
+  bottom: 10px;
+  left: 10px;
+  right: 10px;
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  overflow: auto;
+}
+
+.album {
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+  padding: 5px;
+}
+
+.albumPicture {
+  width: 100%;
+}
+
+.albumName {
+  align-self: center;
+  margin-top: 3px;
+  font-size: 2em;
+}
+
+img {
+  pointer-events: none;
+}
+::-webkit-scrollbar {
+    display: none;
+}
+#titleAlbum {
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+#titlePlayPause {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+#titles{
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+  overflow-x: hidden;
+  justify-content: flex-start;
+  flex-wrap: nowrap;
+}
+
+.title {
+  padding: 10px;
+  width: 100%;
+  font-size: 2em;
+}
+
+.title-current {
+  background-color: #000;
+}
+
+#play, #pause, #repeat, #no-repeat {
+  width: 40px;
+  height: 40px;
+    color: white;
+}
+
+.repeat-svg {
+  transform: rotate(-45deg);
 }
