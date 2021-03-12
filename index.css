@@ -56,7 +56,7 @@ html {
 }
 
 body {
-  pointer: none;
+   cursor: none;
     position: absolute;
     overflow: hidden;
     display: flex;
