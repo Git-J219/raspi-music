@@ -9,7 +9,7 @@ const settings = fs.existsSync(path.join(os.homedir(), "raspi-music-config.json"
 contextBridge.exposeInMainWorld("miscHelper", {
   quit: () => {
     if(settings.customQuit){
-      document.querySelector("#shutdownImg").src = path.pathToFileURL(settings.quitImage).href;
+      document.querySelector("#shutdownImg").src = url.pathToFileURL(settings.quitImage).href;
       document.querySelector("#shutdownImg").style.display = "block";
       shell.openExternal(settings.quitScript);
     }else{
