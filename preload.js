@@ -1,11 +1,20 @@
-const {ipcRenderer, contextBridge} = require("electron");
+const {ipcRenderer, contextBridge, shell} = require("electron");
 const path = require("path");
 const fs = require("fs-extra");
 const url = require("url");
+const os = require("os");
+
+const settings = fs.existsSync(path.join(os.homedir(), "raspi-music-config.json")) ? require(path.join(os.homedir(), "raspi-music-config.json")) : {}
 
 contextBridge.exposeInMainWorld("miscHelper", {
   quit: () => {
-    ipcRenderer.send("quit");
+    if(settings.customQuit){
+      document.querySelector("#shutdownImg").src = path.pathToFileURL(settings.quitImage).href;
+      document.querySelector("#shutdownImg").style.display = "block";
+      shell.openExternal(settings.quitScript);
+    }else{
+      ipcRenderer.send("quit");
+    }
   },
   getAlbumInfo: (albumSrc) => {
     let info = {};
@@ -23,7 +32,7 @@ contextBridge.exposeInMainWorld("miscHelper", {
     })]);
   },
   scanAlbums: () => {
-    return fs.readdirSync(path.join(require("os").homedir(), "raspi-music"), { withFileTypes: true }).filter(dirent => {return dirent.isDirectory()}).map(dirent => {return path.join(require("os").homedir(), "raspi-music", dirent.name)})
+    return fs.readdirSync(path.join(os.homedir(), "raspi-music"), { withFileTypes: true }).filter(dirent => {return dirent.isDirectory()}).map(dirent => {return path.join(os.homedir(), "raspi-music", dirent.name)})
   },
-  useCustomScroll: fs.existsSync(path.join(require('os').homedir(), "raspi-music-use-custom-scroll"))
+  useCustomScroll: !!settings.useCustomScroll
 });
