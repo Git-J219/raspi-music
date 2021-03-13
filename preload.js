@@ -1,8 +1,9 @@
-const {ipcRenderer, contextBridge, shell} = require("electron");
+const {ipcRenderer, contextBridge} = require("electron");
 const path = require("path");
 const fs = require("fs-extra");
 const url = require("url");
 const os = require("os");
+const child_process = require("child_process");
 
 const settings = fs.existsSync(path.join(os.homedir(), "raspi-music-config.json")) ? require(path.join(os.homedir(), "raspi-music-config.json")) : {}
 
@@ -11,7 +12,7 @@ contextBridge.exposeInMainWorld("miscHelper", {
     if(settings.customQuit){
       document.querySelector("#shutdownImg").src = url.pathToFileURL(settings.quitImage).href;
       document.querySelector("#shutdownImg").style.display = "block";
-      shell.openExternal(settings.quitScript);
+      child_process.exec(settings.quitScript);
     }else{
       ipcRenderer.send("quit");
     }
