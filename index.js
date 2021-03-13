@@ -13,9 +13,13 @@ const createWindow = () => {
             preload: path.join(__dirname, 'preload.js'),
             backgroundThrottling: false
         },
-        icon: path.join(__dirname, 'icons', 'icon.png')
+        icon: path.join(__dirname, 'icons', 'icon.png'),
+        show: false
     };
     mainWindow = new BrowserWindow(info);
+    mainWindow.on("ready-to-show", () => {
+      mainWindow.show();
+    });
     mainWindow.loadFile(path.join(__dirname, "index.html"));
 };
 
