@@ -150,6 +150,12 @@ img {
   flex-wrap: nowrap;
 }
 
+#title{
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-color: #000;
+}
+
 .title {
   padding: 10px;
   width: 100%;

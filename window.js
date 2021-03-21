@@ -25,6 +25,7 @@ document.querySelector("#app_back").addEventListener("click", () => {
   document.querySelector("#titleAlbum").style.display = "none";
   document.querySelector("audio").pause();
   currentTitle = -1;
+  document.querySelector("#title").style.backgroundImage = "";
 });
 
 document.querySelector("#pause").addEventListener("click", () => {
@@ -43,8 +44,9 @@ document.querySelector("audio").addEventListener("pause", () => {
   document.querySelector("#play").style.display = "";
 });
 document.querySelector("audio").addEventListener("timeupdate", () => {
-  let currentP = document.querySelector("audio").duration / document.querySelector("audio").currentTime;
-  document.querySelector("#titleAlbum").style.background = `linear-gradient(0.25turn, #000 {currentP}%, #aaa {currentP}%)`
+  let currentP = (100/document.querySelector("audio").duration) * document.querySelector("audio").currentTime;
+  document.querySelector("#title").style.backgroundImage = `linear-gradient(0.25turn, #fff ${currentP}%, #000 ${currentP}%)`;
+  console.log(currentP);
 });
 document.querySelector("#repeat").addEventListener("click", () => {
   document.querySelector("audio").loop = false;
@@ -84,6 +86,7 @@ function createAlbum(albumSrc){
     document.querySelector("#title").innerText = albumInfo.name;
     document.querySelector("#titles").innerHTML = "";
     scanAndWriteTitles(albumSrc);
+    document.querySelector("#title").style.backgroundImage = "";
     document.querySelector("#titles").style.display = "";
     document.querySelector("#albums").style.display = "none";
     document.querySelector("#app_back").style.display = "";
