@@ -42,6 +42,10 @@ document.querySelector("audio").addEventListener("pause", () => {
   document.querySelector("#pause").style.display = "none";
   document.querySelector("#play").style.display = "";
 });
+document.querySelector("audio").addEventListener("timeupdate", () => {
+  let currentP = document.querySelector("audio").duration / document.querySelector("audio").currentTime;
+  document.querySelector("#titleAlbum").style.background = `linear-gradient(0.25turn, #000 {currentP}%, #aaa {currentP}%)`
+});
 document.querySelector("#repeat").addEventListener("click", () => {
   document.querySelector("audio").loop = false;
   document.querySelector("#no-repeat").style.display = "";
