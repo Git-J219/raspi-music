@@ -8,12 +8,11 @@ Mit raspi-music kannst du den Raspberry Pi zu einem einfachen Musikplayer machen
   1. Im Terminal: `sudo curl -fsSL https://deb.nodesource.com/setup_15.x | bash -
 `
   2. Auch im Terminal: `sudo apt-get install -y nodejs`
-3. (optionale Schritte):
-  1. Desktopbild ändern
-  2. Splashscreen ändern:
-    1. Bild auf den Raspberry Pi laden
-    2. Bild als splash.png zu /usr/share/plymouth/themes/pix laden
-  3. Bootinfo entfernen: `#` vor diesen Zeilen in der Datei /usr/share/plymouth/themes/pix/pix.script einfügen: `message_sprite = Sprite();`,
+3. Desktopbild ändern
+4. Splashscreen ändern:
+  1. Bild auf den Raspberry Pi laden
+  2. Bild als splash.png zu /usr/share/plymouth/themes/pix laden
+5. Bootinfo entfernen: `#` vor diesen Zeilen in der Datei /usr/share/plymouth/themes/pix/pix.script einfügen: `message_sprite = Sprite();`,
 `message_sprite.SetPosition(screen_width * 0.1, screen_height * 0.9, 10000);`,
 `my_image = Image.Text(text, 1, 1, 1);` und
 `message_sprite.SetImage(my_image);`
