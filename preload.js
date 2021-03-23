@@ -5,7 +5,11 @@ const url = require("url");
 const os = require("os");
 const child_process = require("child_process");
 
-const settings = fs.existsSync(path.join(os.homedir(), "raspi-music-config.json")) ? require(path.join(os.homedir(), "raspi-music-config.json")) : {}
+function readIfExist(fPath){
+  return fs.existsSync(fPath) ? fs.readJSONSync(fPath) : {};
+}
+
+const settings = readIfExist(path.join(os.homedir(), "raspi-music-config.json"));
 
 let autoReloadWatcher = fs.watch(path.join(os.homedir(), "raspi-music"));
 
@@ -30,12 +34,15 @@ contextBridge.exposeInMainWorld("miscHelper", {
   getAlbumInfo: (albumSrc) => {
     let info = {};
     info.img = fs.existsSync(path.join(albumSrc, "cover.png")) ? url.pathToFileURL(path.join(albumSrc, "cover.png")).href : "albumDefaultImg.png";
-    info.name = require(path.join(albumSrc, "album.json")).name;
+    info.name = readIfExist(path.join(albumSrc, "album.json")).name;
+    if(!info.name){
+      info.name = path.parse(albumSrc).name;
+    }
     return info;
   },
   scanTitles: (albumSrc) => {
     const titles = fs.readdirSync(albumSrc).filter(el => {console.log(el);return el != "cover.png" && el != "album.json" && el != "desktop.ini"});
-    const info = require(path.join(albumSrc, "album.json"));
+    const info = readIfExist(path.join(albumSrc, "album.json"));
     return([titles.map(el => {
       return url.pathToFileURL(path.join(albumSrc, el)).href;
     }), titles.map(el => {
