@@ -19,5 +19,5 @@ readData().then((fn) => {
     vals[fn[0][i]] = fn[1][i];
   }
   }
-  console.log(JSON.stringify(vals));
+  console.log(JSON.stringify(vals, null, 4));
 });
