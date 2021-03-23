@@ -16,7 +16,7 @@ contextBridge.exposeInMainWorld("miscHelper", {
         fn();
       }
     });
-  }
+  },
   quit: () => {
     if(settings.customQuit){
       document.querySelector("#shutdownImg").src = url.pathToFileURL(settings.quitImage).href;
