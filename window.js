@@ -126,12 +126,15 @@ function createAndAppendAlbum(albumSrc){
   document.querySelector("#albums").appendChild(createAlbum(albumSrc));
 }
 
+function loadAlbums(){
 const albums = miscHelper.scanAlbums();
+  const aClear = document.querySelector("#albums");
+  while(aClear.firstChild && aClear.removeChild(aClear.firstChild));
 for (var i = 0; i < albums.length; i++) {
   console.log(albums[i]);
   createAndAppendAlbum(albums[i]);
-}
-
+}}
+miscHelper.registerReloader(loadAlbums);
 if(miscHelper.useCustomScroll){
 
 let updateScrollPos = function(e, element) {

@@ -7,7 +7,16 @@ const child_process = require("child_process");
 
 const settings = fs.existsSync(path.join(os.homedir(), "raspi-music-config.json")) ? require(path.join(os.homedir(), "raspi-music-config.json")) : {}
 
+let autoReloadWatcher = fs.watch(path.join(os.homedir(), "raspi-music"));
+
 contextBridge.exposeInMainWorld("miscHelper", {
+  registerReloader: (fn) => {
+    autoReloadWatcher.on('change', (type) => {
+      if(type === "rename"){
+        fn();
+      }
+    });
+  }
   quit: () => {
     if(settings.customQuit){
       document.querySelector("#shutdownImg").src = url.pathToFileURL(settings.quitImage).href;
