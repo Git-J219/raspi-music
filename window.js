@@ -134,6 +134,7 @@ for (var i = 0; i < albums.length; i++) {
   console.log(albums[i]);
   createAndAppendAlbum(albums[i]);
 }}
+loadAlbums();
 miscHelper.registerReloader(loadAlbums);
 if(miscHelper.useCustomScroll){
 
