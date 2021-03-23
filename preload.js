@@ -18,6 +18,7 @@ contextBridge.exposeInMainWorld("miscHelper", {
     });
   },
   quit: () => {
+    autoReloadWatcher.close();
     if(settings.customQuit){
       document.querySelector("#shutdownImg").src = url.pathToFileURL(settings.quitImage).href;
       document.querySelector("#shutdownImg").style.display = "block";
