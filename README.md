@@ -27,8 +27,8 @@ Mit raspi-music kannst du den Raspberry Pi zu einem einfachen Musikplayer machen
   3. Im Ordner /home/pi den Ordner raspi-music erstellen
 4. Autostart einrichten:
   1. In der Datei /etc/xdg/lxsession/LXDE-pi/autostart die Zeilen `@lxpanel --profile LXDE-pi` und `@xscreensaver -no-splash` entfernen
-  2. Im Ordner /home/pi die Datei rmstart.sh mit diesem Inhalt erstellen: `npm start --prefix /home/pi/rm  
-  lxpanel --profile LXDE-pi`
+  2. Im Ordner /home/pi die Datei rmstart.sh mit diesem Inhalt erstellen: `npm start --prefix /home/pi/rm`  
+  `lxpanel --profile LXDE-pi`
   3. Im Ordner /etc/xdg/autostart die Datei rm.desktop mit diesem Inhalt erstellen:  
   `[Desktop Entry]`  
   `Type=Application`  
