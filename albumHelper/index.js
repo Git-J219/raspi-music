@@ -1,6 +1,7 @@
 const mm = require("music-metadata");
 const fs = require("fs-extra");
 const path = require("path");
+const showUndefined = process.argv.includes("-a");
 async function readData() {
   const files = fs.readdirSync(process.cwd()).filter(el => {
     return el != "album.json" && el != "cover.png" && el != "desktop.ini";
@@ -17,6 +18,8 @@ readData().then((fn) => {
   for (var i = 0; i < fn[0].length; i++) {
     if(fn[1][i]){
     vals[fn[0][i]] = fn[1][i];
+  }else if(showUndefined){
+    vals[fn[0][i]] = "";
   }
   }
   console.log(JSON.stringify(vals, null, 4));
